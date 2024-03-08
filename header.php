@@ -3,7 +3,7 @@
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Mobile Shopee</title>
+      <title>Jimenisima</title>
 
       <!-- Bootstrap CDN -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -38,29 +38,27 @@
 
       <!-- Primary Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
-          <a class="navbar-brand" href="#">Mobile Shopee</a>
+          <a class="navbar-brand" href="index.php"><img src="assets/jimenisima.png" class="jimenisima-logo" alt="Jimenisima"> Jimenísima</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav m-auto font-rubik">
+
                   <li class="nav-item active">
-                      <a class="nav-link" href="#">On Sale</a>
+                      <a class="nav-link" href="#">Categorías <i class="fas fa-chevron-down"></i></a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Category</a>
+                      <a class="nav-link" href="index.php#top-sale">Nuevos productos</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Products <i class="fas fa-chevron-down"></i></a>
+                      <a class="nav-link" href="index.php#blogs">La tienda en ferias</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Blog</a>
+                      <a class="nav-link" href="#">Registrarse</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Category <i class="fas fa-chevron-down"></i></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">Coming Soon</a>
+                      <a class="nav-link" href="#">Iniciar sesión</a>
                   </li>
               </ul>
               <form action="#" class="font-size-14 font-rale">
