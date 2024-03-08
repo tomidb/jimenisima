@@ -118,4 +118,20 @@ button:focus {
   padding: 5% 0;
 }
 
+#reg-form input[type="text"],
+#reg-form input[type="email"],
+#reg-form input[type="password"] {
+  border: none;
+  border-radius: unset;
+  border-bottom: 1px solid grey;
+  font-size: 18px;
+}
+
+#reg-form input[type="text"],
+#reg-form input[type="email"],
+#reg-form input[type="password"] {
+  outline: none;
+  box-shadow: none;
+}
+
 /*# sourceMappingURL=style.css.map */
