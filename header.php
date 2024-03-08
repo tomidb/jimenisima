@@ -55,10 +55,10 @@
                       <a class="nav-link" href="index.php#blogs">La tienda en ferias</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Registrarse</a>
+                      <a class="nav-link" href="register.php">Registrarse</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Iniciar sesión</a>
+                      <a class="nav-link" href="login.php">Iniciar sesión</a>
                   </li>
               </ul>
               <form action="#" class="font-size-14 font-rale">
