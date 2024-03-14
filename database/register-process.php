@@ -1,5 +1,5 @@
 <?php
-require('./helper/sanitize.php');
+require('./helper/helper.php');
 //error validate
 $error = array();
 
@@ -38,7 +38,12 @@ mysqli_stmt_bind_param($q, 'sss', $userName, $email, $hashed_pass);
 // execute stmt
 mysqli_stmt_execute($q);
 if(mysqli_stmt_affected_rows($q)  == 1){
-  print("recoded successfully inserted");
+  //start a new session
+  session_start();
+  //create session variable
+  $_SESSION['user_id'] = mysqli_insert_id($db->con);
+header('Location: login.php');
+exit();
 } else{
   print("Error while registration");
 }

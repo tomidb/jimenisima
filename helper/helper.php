@@ -19,3 +19,18 @@ function validate_input_email($emailValue){
   }
   return '';
 }
+
+function get_user_info($con, $user_id){
+  $query = "SELECT user_id, userName, email, password, rol, dateReg FROM user WHERE user_id=?";
+  $q = mysqli_stmt_init($con);
+  mysqli_stmt_prepare($q, $query);
+  //bind statement
+  mysqli_stmt_bind_param($q, "i", $user_id);
+  // execute sql statement
+  mysqli_stmt_execute($q);
+  $result = mysqli_stmt_get_result($q);
+  $row = mysqli_fetch_array($result);
+
+  return empty($row) ? false : $row;
+  
+}

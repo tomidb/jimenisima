@@ -19,17 +19,28 @@
       <link rel="stylesheet" href="style.css">
 
       <?php
+      session_start();
       // require functions.php file
       require ('functions.php');
+      // generate user info
+      require('helper/helper.php');
+    $user = array();
+    if(isset($_SESSION['user_id'])){
+      $user = get_user_info($db->con,$_SESSION['user_id']);
+    }
       ?>
 
   </head>
   <body>
 
   <!-- start #header -->
+
   <header id="header">
+
       <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
-          <p class="font-rale font-size-12 text-black-50 m-0">Hello! I'm Tomás de Breuil and i'm working here.</p>
+          <p class="font-rale font-size-12 text-black-50 m-0">Hello! I'm Tomás de Breuil and i'm working here. User info: name-><?php
+  echo $user['userName'];?>, id-><?php
+  echo $user['user_id'];?> </p>
           <div class="font-rale font-size-14">
               <a href="#" class="px-3 border-right border-left text-dark">Login</a>
               <a href="#" class="px-3 border-right text-dark">Whishlist (0)</a>

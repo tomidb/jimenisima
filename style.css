@@ -112,9 +112,10 @@ button:focus {
   margin-top: 1rem;
 }
 
-/* Register Template */
+/* Register & Login Templates */
 
-#register {
+#register,
+#login {
   padding: 5% 0;
 }
 
