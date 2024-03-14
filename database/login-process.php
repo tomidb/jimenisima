@@ -26,6 +26,8 @@ $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 if(!empty($row)){
   // verify password
   if(password_verify($password, $row['password'])){
+    session_start();
+     $_SESSION['user_id'] = $row['user_id'];
     header('Location: index.php');
     exit();
   }

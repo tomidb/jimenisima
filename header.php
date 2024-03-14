@@ -23,7 +23,7 @@
       // require functions.php file
       require ('functions.php');
       // generate user info
-      require('helper/helper.php');
+      require_once('helper/helper.php');
     $user = array();
     if(isset($_SESSION['user_id'])){
       $user = get_user_info($db->con,$_SESSION['user_id']);
@@ -38,9 +38,12 @@
   <header id="header">
 
       <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
-          <p class="font-rale font-size-12 text-black-50 m-0">Hello! I'm Tomás de Breuil and i'm working here. User info: name-><?php
-  echo $user['userName'];?>, id-><?php
-  echo $user['user_id'];?> </p>
+          <p class="font-rale font-size-12 text-black-50 m-0">Hello! I'm Tomás de Breuil and i'm working here.<?php
+              if(isset($_SESSION['user_id'])){
+              echo $user['userName'];
+              echo $user['user_id'];
+                  }?>
+          </p>
           <div class="font-rale font-size-14">
               <a href="#" class="px-3 border-right border-left text-dark">Login</a>
               <a href="#" class="px-3 border-right text-dark">Whishlist (0)</a>
@@ -65,12 +68,30 @@
                   <li class="nav-item">
                       <a class="nav-link" href="index.php#blogs">La tienda en ferias</a>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="register.php">Registrarse</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="login.php">Iniciar sesión</a>
-                  </li>
+                  <?php
+                  if(isset($_SESSION['user_id']) && isset($user['email']) && $user['email'] == 'admin@jimenisima.com'){?>
+                      <li class="nav-item">
+                          <a class="nav-link" href="admin.php">Admin Panel</a>
+                      </li>
+                  <?php } ?>
+                  <?php
+                    if(isset($_SESSION['user_id'])) {
+                   ?>
+                    <li class="nav-item">
+                      <a class="nav-link" href="logout.php">Cerrar sesión</a>
+                    </li>
+                  <?php
+                  } else {
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.php">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Iniciar sesión</a>
+                    </li>
+                    <?php
+                }
+              ?>
               </ul>
               <form action="#" class="font-size-14 font-rale">
                   <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
