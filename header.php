@@ -21,12 +21,19 @@
       <?php
       session_start();
       // require functions.php file
-      require ('functions.php');
+      require('functions.php');
       // generate user info
-      require_once('helper/helper.php');
+      require('helper/helper.php');
     $user = array();
     if(isset($_SESSION['user_id'])){
       $user = get_user_info($db->con,$_SESSION['user_id']);
+
+  // AGREGADOS 
+      $user_id = $_SESSION['user_id'];
+      $in_cart = $Cart->getCartId($Cart->getUserCartItems($user_id));
+    }else {
+      $user_id = '1'; 
+      $in_cart = []; 
     }
       ?>
 
@@ -42,7 +49,10 @@
               if(isset($_SESSION['user_id'])){
               echo $user['userName'];
               echo $user['user_id'];
-                  }?>
+                  } else {
+                    echo "NO HAY NADIE ON";
+                  }
+                  ?>
           </p>
           <div class="font-rale font-size-14">
               <a href="#" class="px-3 border-right border-left text-dark">Login</a>
@@ -93,10 +103,16 @@
                 }
               ?>
               </ul>
-              <form action="#" class="font-size-14 font-rale">
+              <form action="#" class="font-size-14 font-rale">  
                   <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
                       <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
-                      <span class="px-3 py-2 rounded-pill text-dark bg-light"><?php echo count($product->getData('cart')); ?></span>
+                      <span class="px-3 py-2 rounded-pill text-dark bg-light"><?php 
+                        if(isset($_SESSION['user_id'])) {
+                        echo count($Cart->getUserCartItems($_SESSION['user_id']));
+                        } else {
+                          echo '0';
+                        }
+                       ?></span>
                   </a>
               </form>
           </div>

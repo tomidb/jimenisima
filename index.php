@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ ini_set('display_errors', 10);
     ob_start();
     // include header.php file
     include ('header.php');

@@ -59,6 +59,23 @@ class Cart
         }
     }
 
+    // get items from cart table with user_id
+    public function getUserCartItems($user_id)
+    {
+        $query = "SELECT * FROM cart WHERE user_id = $user_id";
+        $result = $this->db->con->query($query);
+
+        $userCartItems = [];
+
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $userCartItems[] = $row;
+            }
+        }
+
+        return $userCartItems;
+    }
+
     // calculate sub total
     public function getSum($arr){
         if(isset($arr)){
@@ -70,7 +87,7 @@ class Cart
         }
     }
 
-    // get item_it of shopping cart list
+    // get item_iD of shopping cart list
     public function getCartId($cartArray = null, $key = "item_id"){
         if ($cartArray != null){
             $cart_id = array_map(function ($value) use($key){

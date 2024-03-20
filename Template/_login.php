@@ -5,8 +5,8 @@ if (session_status() == PHP_SESSION_NONE) {
   $user = array();
   if(isset($_SESSION['user_id'])){
     $user = get_user_info($db->con, $_SESSION['user_id']);
-  } 
-
+  }  
+  
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
   require('./database/login-process.php');
   }

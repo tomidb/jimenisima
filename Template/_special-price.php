@@ -3,7 +3,6 @@
     $brand = array_map(function ($pro){ return $pro['item_brand']; }, $product_shuffle);
     $unique = array_unique($brand);
     sort($unique);
-    shuffle($product_shuffle);
 
 // request method post
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -13,7 +12,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     }
 }
 
-$in_cart = $Cart->getCartId($product->getData('cart'));
 
 ?>
 <section id="special-price">
@@ -48,12 +46,12 @@ $in_cart = $Cart->getCartId($product->getData('cart'));
                             </div>
                             <form method="post">
                                 <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?? '1'; ?>">
-                                <input type="hidden" name="user_id" value="<?php echo 1; ?>">
+                                <input type="hidden" name="user_id" value="<?php echo $user['user_id'] ?? '1'; ?>">
                                 <?php
                                 if (in_array($item['item_id'], $in_cart ?? [])){
                                     echo '<button type="submit" disabled class="btn btn-success font-size-12">In the Cart</button>';
                                 }else{
-                                    echo '<button type="submit" name="top_sale_submit" class="btn btn-warning font-size-12">Add to Cart</button>';
+                                    echo '<button type="submit" name="special_price_submit" class="btn btn-warning font-size-12">Add to Cart</button>';
                                 }
                                 ?>
                             </form>

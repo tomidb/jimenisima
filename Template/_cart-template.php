@@ -20,7 +20,10 @@
         <div class="row">
             <div class="col-sm-9">
                 <?php
-                    foreach ($product->getData('cart') as $item) :
+                 //AÑADIENDO FUNCIONALIDAD DE PRUEBA
+                    $user_id = $_SESSION['user_id'];
+                    $userCartItems = $Cart->getUserCartItems($user_id);
+                    foreach ($userCartItems as $item) :
                         $cart = $product->getProduct($item['item_id']);
                         $subTotal[] = array_map(function ($item){
                 ?>
