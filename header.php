@@ -32,7 +32,6 @@
       $user_id = $_SESSION['user_id'];
       $in_cart = $Cart->getCartId($Cart->getUserCartItems($user_id));
     }else {
-      $user_id = '1'; 
       $in_cart = []; 
     }
       ?>
@@ -49,8 +48,10 @@
               if(isset($_SESSION['user_id'])){
               echo $user['userName'];
               echo $user['user_id'];
+              echo "user_id".$user_id ;
                   } else {
                     echo "NO HAY NADIE ON";
+                    
                   }
                   ?>
           </p>

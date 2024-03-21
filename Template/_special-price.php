@@ -7,8 +7,14 @@
 // request method post
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     if (isset($_POST['special_price_submit'])){
-        // call method addToCart
-        $Cart->addToCart($_POST['user_id'], $_POST['item_id']);
+    if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+          $Cart->addToCart($_POST['user_id'], $_POST['item_id']);
+        } else {
+
+
+    header('Location: login.php?cart');
+    exit();
+        }
     }
 }
 

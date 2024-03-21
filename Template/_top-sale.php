@@ -4,8 +4,14 @@
     // request method post
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         if (isset($_POST['top_sale_submit'])){
-            // call method addToCart
-            $Cart->addToCart($_POST['user_id'], $_POST['item_id']);
+    if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+          $Cart->addToCart($_POST['user_id'], $_POST['item_id']);
+        } else {
+
+
+    header('Location: login.php?cart');
+    exit();
+        }
         }
     }
 
@@ -34,7 +40,7 @@
                         </div>
                         <form method="post">
                             <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?? '1'; ?>">
-                            <input type="hidden" name="user_id" value="<?php echo $user['user_id'] ?? '1'; ?>">
+                            <input type="hidden" name="user_id" value="<?php echo $user['user_id'] ?? ''; ?>">
                                 <?php
                                 if (in_array($item['item_id'], $in_cart ?? [])){
                                     echo '<button type="submit" disabled class="btn btn-success font-size-12">In the Cart</button>';

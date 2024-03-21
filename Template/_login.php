@@ -1,12 +1,5 @@
   <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-  $user = array();
-  if(isset($_SESSION['user_id'])){
-    $user = get_user_info($db->con, $_SESSION['user_id']);
-  }  
-  
+
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
   require('./database/login-process.php');
   }
@@ -17,9 +10,15 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="row m-0">
       <div class="col-lg-4 offset-lg-4">
         <div class="text-center pb-5">
+          <?php
+          if(isset($_GET['cart'])){
+            echo '<p class="p-1 m-0 font-ubuntu text-black-50">Debes inciar sesion antes de añadir productos al carrito de compras.</p>';
+          }
+          ?>
+          <br>
           <h5 class="login-title text-dark">Iniciar Sesión</h5>
-          <p class="p-1 m-0 font-ubuntu text-black-50">Login and enjoy additional features.</p>
-          <span>Crear una <a href="register.php">cuenta nueva.</a></span>
+          <p class="p-1 m-0 font-ubuntu text-black-50">Si no tienes cuenta primero debes</p>
+          <span>crear una <a href="register.php">cuenta nueva.</a></span>
         </div>
         <div class="d-flex justify-content-center">
           <form action="login.php" method="post" enctype="multipart/form-data" id="log-form">
