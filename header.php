@@ -63,8 +63,25 @@
 
       <!-- Primary Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
+        <div class="container-fluid">
           <a class="navbar-brand" href="index.php"><img src="assets/jimenisima.png" class="jimenisima-logo" alt="Jimenisima"> Jimenísima</a>
-
+                    <form action="#" class="font-size-14 font-rale d-lg-none ml-auto mr-3">
+            <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
+                <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
+                <span class="px-3 py-2 rounded-pill text-dark bg-light">
+                    <?php 
+                    if(isset($_SESSION['user_id'])) {
+                        echo count($Cart->getUserCartItems($_SESSION['user_id']));
+                    } else {
+                        echo '0';
+                    }
+                    ?>
+                </span>
+            </a>
+        </form>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav m-auto font-rubik">
 
@@ -104,21 +121,21 @@
               </ul>
 
           </div>
-                        <form action="#" class="font-size-14 font-rale">  
-                  <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
-                      <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
-                      <span class="px-3 py-2 rounded-pill text-dark bg-light"><?php 
-                        if(isset($_SESSION['user_id'])) {
+        <form action="#" class="font-size-14 font-rale d-none d-lg-block">
+            <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
+                <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
+                <span class="px-3 py-2 rounded-pill text-dark bg-light">
+                    <?php 
+                    if(isset($_SESSION['user_id'])) {
                         echo count($Cart->getUserCartItems($_SESSION['user_id']));
-                        } else {
-                          echo '0';
-                        }
-                       ?></span>
-                  </a>
-              </form>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+                    } else {
+                        echo '0';
+                    }
+                    ?>
+                </span>
+            </a>
+        </form>
+ </div>
       </nav>
       <!-- !Primary Navigation -->
 
