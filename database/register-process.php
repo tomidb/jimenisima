@@ -22,30 +22,37 @@ if(empty($confirm_pwd)){
   $error[]= "Olvidaste confirmar la contraseña";
 }
 
+// check if email already exist
+$check_email_query = "SELECT email FROM user WHERE email='$email'";
+$check_email_query_run = mysqli_query($db->con, $check_email_query);
 
-if(empty($error)){  
-  // register new user
-$hashed_pass = password_hash($password, PASSWORD_DEFAULT);
-// create query
-$query = "INSERT INTO user (user_id, userName, email, password, rol, dateReg)";
-$query .= "VALUES ('', ?, ?, ?, 'user', current_timestamp())";
-//initialize statement
-$q = mysqli_stmt_init($db->con);
-mysqli_stmt_prepare($q, $query);
-// bind query values
-mysqli_stmt_bind_param($q, 'sss', $userName, $email, $hashed_pass);
-// execute stmt
-mysqli_stmt_execute($q);
-if(mysqli_stmt_affected_rows($q)  == 1){
-  //start a new session
-  session_start();
-  //create session variable
-  $_SESSION['user_id'] = mysqli_insert_id($db->con);
-header('Location: index.php');
-exit();
-} else{
-  print("Error while registration");
-}
-}else{
-echo 'not validate';
+if(mysqli_num_rows($check_email_query_run) > 0){
+    $_SESSION['message'] = "Ya existe una cuenta registrada con ese email.";
+} else {
+    if(empty($error)){  
+      // register new user
+    $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
+    // create query
+    $query = "INSERT INTO user (user_id, userName, email, password, rol, dateReg)";
+    $query .= "VALUES ('', ?, ?, ?, 'user', current_timestamp())";
+    //initialize statement
+    $q = mysqli_stmt_init($db->con);
+    mysqli_stmt_prepare($q, $query);
+    // bind query values
+    mysqli_stmt_bind_param($q, 'sss', $userName, $email, $hashed_pass);
+    // execute stmt
+    mysqli_stmt_execute($q);
+    if(mysqli_stmt_affected_rows($q)  == 1){
+      //start a new session
+      //create session variable
+      $_SESSION['user_id'] = mysqli_insert_id($db->con);
+      echo "<script>window.location.href='index.php'</script>";
+      exit();
+    exit();
+    } else{
+      print("Error while registration");
+    }
+    }else{
+    echo 'not validate';
+    }
 }

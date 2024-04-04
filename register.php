@@ -4,7 +4,6 @@ include ('header.php');
 ?>
 
 <?php
-
     /* include register template */
    include ('Template/_register.php')
     /*  include register template  */

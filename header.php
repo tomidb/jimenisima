@@ -1,4 +1,11 @@
-  <!DOCTYPE html>
+<?php
+session_start();
+// require functions.php file
+require('functions.php');
+// generate user info
+require('helper/helper.php');
+?>
+<!DOCTYPE html>
   <html lang="en">
   <head>
       <meta charset="UTF-8">
@@ -18,12 +25,8 @@
       <!-- Custom CSS file -->
       <link rel="stylesheet" href="style.css">
 
-      <?php
-      session_start();
-      // require functions.php file
-      require('functions.php');
-      // generate user info
-      require('helper/helper.php');
+
+    <?php 
     $user = array();
     if(isset($_SESSION['user_id'])){
       $user = get_user_info($db->con,$_SESSION['user_id']);
@@ -44,16 +47,20 @@
   <header id="header">
 
       <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
-          <p class="font-rale font-size-12 text-black-50 m-0">Hello! I'm Tomás de Breuil and i'm working here.<?php
+          <p class="font-rale font-size-12 text-black-50 m-0">Hello! I'm Tomás de Breuil and i'm working here.
+            <?php
               if(isset($_SESSION['user_id'])){
-              echo $user['userName'];
-              echo $user['user_id'];
-              echo "user_id".$user_id ;
+                ?>
+                <strong>User name: </strong><span><?= $user['userName']; ?></span>
+                <strong> - User id: </strong><span><?= $user['user_id']; ?></span>
+                <strong> - User email: </strong><span><?= $user['email']; ?></span>
+                <strong> - User rol: </strong><span><?= $user['rol']; ?></span>
+              <?php
                   } else {
                     echo "NO HAY NADIE ON";
                     
                   }
-                  ?>
+              ?>
           </p>
           <div class="font-rale font-size-14">
               <a href="#" class="px-3 border-right border-left text-dark">Login</a>
@@ -64,7 +71,7 @@
       <!-- Primary Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.php"><img src="assets/jimenisima.png" class="jimenisima-logo" alt="Jimenisima"> Jimenísima</a>
+          <a class="navbar-brand" href="index.php"><img src="assets/jimenisima.png" class="jimenisima-logo" alt="Jimenisima"> Stick Puff</a>
                     <form action="#" class="font-size-14 font-rale d-lg-none ml-auto mr-3">
             <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
                 <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
@@ -92,21 +99,19 @@
                       <a class="nav-link" href="index.php#top-sale">Nuevos productos</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.php#blogs">La tienda en ferias</a>
+                      <a class="nav-link" href="index.php#blogs">Nuestra tienda en ferias</a>
                   </li>
                   <?php
-                  if(isset($_SESSION['user_id']) && isset($user['email']) && $user['email'] == 'admin@jimenisima.com'){?>
+                  if(isset($_SESSION['user_id']) && isset($user['email']) && $user['email'] == 'stickers@admin.com'){?>
                       <li class="nav-item">
                           <a class="nav-link" href="admin.php">Admin Panel</a>
                       </li>
-                  <?php } ?>
-                  <?php
+                  <?php }
                     if(isset($_SESSION['user_id'])) {
                    ?>
                     <li class="nav-item">
                       <a class="nav-link" href="logout.php">Cerrar sesión</a>
-                    </li>
-                  <?php
+                    </li><?php
                   } else {
                     ?>
                     <li class="nav-item">
@@ -114,12 +119,10 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login.php">Iniciar sesión</a>
-                    </li>
-                    <?php
+                    </li><?php
                 }
               ?>
               </ul>
-
           </div>
         <form action="#" class="font-size-14 font-rale d-none d-lg-block">
             <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
