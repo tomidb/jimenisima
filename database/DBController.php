@@ -1,13 +1,11 @@
 <?php
-
-
 class DBController
 {
     // Database Connection Properties
     protected $host = 'localhost';
     //
     protected $user = 'root';
-   // id21962273_tomidev 
+   // id21962273_tomidev
     protected $password = '';
  // Kervoline2.
     protected $database = "shopee";

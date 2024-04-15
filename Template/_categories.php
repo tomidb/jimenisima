@@ -19,47 +19,37 @@ $db = new DBController();
                 ?>
       <div class="card">
         <div class="card-header">
-          <h4>Todos los productos</h4>
+          <h4>Todas las categorías</h4>
         </div>
         <div class="card-body">
               <table class="table table-borderer table-striped">
                   <thead>
                     <tr>
                       <th>Id</th>
-                      <th>Categoría</th>
                       <th>Nombre</th>
-                      <th>Precio</th>
-                      <th>Imágen</th>
-                      <th>Cantidad</th>
                       <th>Editar</th>
                       <th>Eliminar</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                        $products = getAll($db, 'products');
+                        $categories = getAll($db, 'categories');
                         
-                          if(mysqli_num_rows($products) > 0)
+                          if($categories)
                           {
-                            foreach ($products as $product)
+                            foreach ($categories as $category)
                              {
                               ?>
                               <tr>
-                                <td><?= $product['id']; ?></td>
-                                <td><?= $product['category']; ?></td>
-                                <td><?= $product['name']; ?></td>
-                                <td><?= $product['price']; ?></td>
+                                <td><?= $category['id']; ?></td>
+                                <td><?= $category['name']; ?></td>
                                 <td>
-                                  <img src="assets/products/<?= $product['image']; ?>" alt="<?= $product['name']; ?>" width="50px" height="50px">
-                                </td>
-                                <td><?= $product['qty']; ?></td>
-                                <td>
-                                  <a href="edit-product.php?id=<?= $product['id']; ?>" class="btn btn-primary btn-sm">Editar</a>
+                                  <a href="edit-category.php?id=<?= $category['id']; ?>" class="btn btn-primary">Editar</a>
                                 </td>
                                 <td>
                                   <form action="database/code.php" method="POST">
-                                    <input type="hidden" name="id" value="<?= $product['id']; ?>">
-                                    <button type="submit" class="btn btn-primary btn-sm" name="del_product_btn">Eliminar</button>
+                                    <input type="hidden" name="category_id" value="<?= $category['id']; ?>">
+                                    <button type="submit" class="btn btn-primary" name="del_category_btn">Eliminar</button>
                                   </form>
                                 </td>
                               </tr>
@@ -68,7 +58,7 @@ $db = new DBController();
                           }
                           else
                           {
-                            echo "<p>No se encontraron productos</p>";
+                            echo "No record founds";
                           }                 
                     ?>   
                   </tbody>

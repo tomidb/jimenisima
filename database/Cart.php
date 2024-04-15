@@ -11,42 +11,38 @@ class Cart
         $this->db = $db;
     }
 
-    // insert into cart table
-    public  function insertIntoCart($params = null, $table = "cart"){
-        if ($this->db->con != null){
-            if ($params != null){
-                // "Insert into cart(user_id) values (0)"
-                // get table columns
-                $columns = implode(',', array_keys($params));
 
-                $values = implode(',' , array_values($params));
-
-                // create sql query
-                $query_string = sprintf("INSERT INTO %s(%s) VALUES(%s)", $table, $columns, $values);
-
-                // execute query
-                $result = $this->db->con->query($query_string);
-                return $result;
-            }
-        }
-    }
-
-    // to get user_id and item_id and insert into cart table
-    public  function addToCart($userid, $itemid){
+    // to insert into cart table
+    public  function addToCart($userid, $itemid, $itemname, $itemimage, $itemprice){
         if (isset($userid) && isset($itemid)){
-            $params = array(
-                "user_id" => $userid,
-                "item_id" => $itemid
-            );
-
-            // insert data into cart
-            $result = $this->insertIntoCart($params);
-            if ($result){
-                // Reload Page
+              $insert_query = "INSERT INTO cart (user_id, item_id, item_name, item_image, item_price) VALUES ('$userid', '$itemid', '$itemname', '$itemimage', '$itemprice')";
+              $insert_query_run = $this->db->con->query($insert_query);
                 header("Location: " . $_SERVER['PHP_SELF']);
             }
         }
+    
+    //  update cart item qty
+    public function UpdateCartQuantity($itemid, $userid, $qty) {
+    if ($itemid != null && $qty != null && $userid != null) {
+        $query = "UPDATE cart SET qty = $qty WHERE item_id = $itemid AND user_id = $userid";
+        $result = $this->db->con->query($query);
+        return $result;
     }
+}
+
+// get cart item qty
+
+public function getCartItemQty($itemid, $userid){
+   if ($itemid != null && $userid != null)
+        $query = "SELECT qty FROM cart WHERE item_id = $itemid AND user_id = $userid";
+        $result = $this->db->con->query($query);
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc(); // Obtenemos el primer resultado como un array asociativo
+            return $row['qty']; // Devolvemos el valor de la cantidad
+        } else {
+            return 0; // Si no hay resultados, devolvemos 0
+        }
+}
 
     // delete cart item using cart item id
     public function deleteCart($item_id = null, $table = 'cart'){

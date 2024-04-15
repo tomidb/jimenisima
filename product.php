@@ -6,7 +6,7 @@ include ('header.php');
 <?php
 
     /*  include products */
-    include ('Template/_products.php');
+    include ('Template/_product.php');
     /*  include products */
 
     /*  include top sale section */

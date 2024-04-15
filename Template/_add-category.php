@@ -1,26 +1,27 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
+                <?php
+                  if(isset($_SESSION['message'])){
+                    ?>
+                      <div class="alert alert-warning" role="alert">
+                      <span><?= $_SESSION['message']; ?></span>
+                      </div>
+                    <?php 
+                        unset($_SESSION['message']);
+                  }
+                ?>
       <div class="card">
         <div class="card-header">
           <h4>Agregar categoría</h4>
         </div>
         <div class="card-body">
-              <form>
+              <form action="database/code.php" method="POST">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      <label for="category-name">Nombre</label>
+                      <input type="text" class="form-control" id="category-name" name="name" placeholder="Ingrese el nombre de la categoría">
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="form-group form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" name="add_category_btn">Añadir</button>
             </form>
         </div>
       </div>

@@ -4,9 +4,9 @@
             <a href="add-category.php" class="list-group-item list-group-item-action active" aria-current="true">
               Agregar categoría
             </a>
-            <a href="#" class="list-group-item list-group-item-action">Editar categoría</a>
-            <a href="#" class="list-group-item list-group-item-action">Agregar producto</a>
-            <a href="#" class="list-group-item list-group-item-action">Editar producto</a>
+            <a href="categories.php" class="list-group-item list-group-item-action">Editar categoría</a>
+            <a href="products.php" class="list-group-item list-group-item-action">Productos</a>
+            <a href="add-product.php" class="list-group-item list-group-item-action">Agregar producto</a>
             <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
           </div>
   </div>

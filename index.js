@@ -92,10 +92,10 @@ $(document).ready(function () {
   let $qty_up = $(".qty .qty-up");
   let $qty_down = $(".qty .qty-down");
   let $deal_price = $("#deal-price");
-  // let $input = $(".qty .qty_input");
 
   // click on qty up button
   $qty_up.click(function (e) {
+    var qty_stock = $(`.qty_stock[data-id='${$(this).data("id")}']`).val();
     let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
     let $price = $(`.product_price[data-id='${$(this).data("id")}']`);
 
@@ -108,17 +108,23 @@ $(document).ready(function () {
         let obj = JSON.parse(result);
         let item_price = obj[0]["item_price"];
 
-        if ($input.val() >= 1 && $input.val() <= 9) {
+        if (
+          parseInt($input.val()) >= 1 &&
+          parseInt($input.val()) < parseInt(qty_stock)
+        ) {
           $input.val(function (i, oldval) {
             return ++oldval;
           });
-
+          console.log($input.val(), qty_stock);
           // increase price of the product
           $price.text(parseInt(item_price * $input.val()).toFixed(2));
 
           // set subtotal price
           let subtotal = parseInt($deal_price.text()) + parseInt(item_price);
           $deal_price.text(subtotal.toFixed(2));
+        } else {
+          console.log($input.val(), qty_stock);
+          window.location.href = "cart.php?sin-stock=1";
         }
       },
     }); // closing ajax request
@@ -138,7 +144,7 @@ $(document).ready(function () {
         let obj = JSON.parse(result);
         let item_price = obj[0]["item_price"];
 
-        if ($input.val() > 1 && $input.val() <= 10) {
+        if ($input.val() > 1) {
           $input.val(function (i, oldval) {
             return --oldval;
           });
@@ -153,6 +159,73 @@ $(document).ready(function () {
       },
     }); // closing ajax request
   }); // closing qty down button
+
+  //increase cart item qty
+  $(document).on("click", ".qty-up", function () {
+    var qty_stock = $(`.qty_stock[data-id='${$(this).data("id")}']`).val();
+    let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
+
+    let $qty = parseInt($input.val());
+    let $qty_update = $qty + 1;
+    let $itemid = $(this).data("id");
+
+    if (
+      parseInt($input.val()) >= 1 &&
+      parseInt($input.val()) < parseInt(qty_stock)
+    ) {
+      let $qty = parseInt($input.val());
+      let $qty_update = $qty + 1;
+      let $itemid = $(this).data("id");
+      var sendData = function () {
+        $.post(
+          "cart.php",
+          {
+            action: "update",
+            itemid: $itemid,
+            qty: $qty_update,
+          },
+          function (response) {
+            console.log($itemid, qty_stock);
+            console.log($qty_up_btn);
+          }
+        );
+      };
+      sendData();
+    }
+  });
+
+  //decrease cart item qty
+
+  $(document).on("click", ".qty-down", function () {
+    var qty_stock = $(`.qty_stock[data-id='${$(this).data("id")}']`).val();
+    let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
+
+    let $qty = parseInt($input.val());
+    let $qty_update = $qty - 1;
+    let $itemid = $(this).data("id");
+
+    if ($input.val() > 1) {
+      let $qty = parseInt($input.val());
+      let $qty_update = $qty - 1;
+      let $itemid = $(this).data("id");
+      var sendData = function () {
+        $.post(
+          "cart.php",
+          {
+            action: "update",
+            itemid: $itemid,
+            qty: $qty_update,
+          },
+          function (response) {
+            console.log(response);
+          }
+        );
+      };
+      sendData();
+    }
+  });
+
+  // responsive nav menu function
 
   $(".navbar-collapse").collapse();
 });

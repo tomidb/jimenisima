@@ -1,5 +1,4 @@
 <?php
-
 // require MySQL Connection
 require ('database/DBController.php');
 
@@ -19,3 +18,4 @@ $product_shuffle = $product->getData();
 
 // Cart object
 $Cart = new Cart($db );
+

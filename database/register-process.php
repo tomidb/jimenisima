@@ -33,8 +33,8 @@ if(mysqli_num_rows($check_email_query_run) > 0){
       // register new user
     $hashed_pass = password_hash($password, PASSWORD_DEFAULT);
     // create query
-    $query = "INSERT INTO user (user_id, userName, email, password, rol, dateReg)";
-    $query .= "VALUES ('', ?, ?, ?, 'user', current_timestamp())";
+    $query = "INSERT INTO user (userName, email, password, rol, dateReg)";
+    $query .= "VALUES (?, ?, ?, 'user', current_timestamp())";
     //initialize statement
     $q = mysqli_stmt_init($db->con);
     mysqli_stmt_prepare($q, $query);

@@ -10,15 +10,15 @@
     <div class="row m-0">
       <div class="col-lg-4 offset-lg-4">
                 <?php
-    if(isset($_SESSION['message'])){
-      ?>
-        <div class="alert alert-warning" role="alert">
-         <strong>Hey! </strong><?= $_SESSION['message']; ?>
-        </div>
-       <?php 
-           unset($_SESSION['message']);
-    }
-  ?>
+                  if(isset($_SESSION['message'])){
+                    ?>
+                      <div class="alert alert-warning" role="alert">
+                      <strong>Hey! </strong><?= $_SESSION['message']; ?>
+                      </div>
+                    <?php 
+                        unset($_SESSION['message']);
+                  }
+                ?>
         <div class="text-center pb-5">
           <?php
           if(isset($_GET['cart'])){

@@ -71,7 +71,7 @@ require('helper/helper.php');
       <!-- Primary Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.php"><img src="assets/jimenisima.png" class="jimenisima-logo" alt="Jimenisima"> Stick Puff</a>
+          <a class="navbar-brand" href="index.php"><img src="assets/wow.webp" class="wow-art" alt="Jimenisima"><span class="wow-art-span">Art</span></a>
                     <form action="#" class="font-size-14 font-rale d-lg-none ml-auto mr-3">
             <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
                 <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
