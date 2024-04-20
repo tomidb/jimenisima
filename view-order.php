@@ -12,16 +12,16 @@ include('helper/adminMiddleware.php');
             <a href="add-category.php" class="list-group-item list-group-item-action">
               Agregar categoría
             </a>
-            <a href="categories.php" class="list-group-item list-group-item-action active">Categorías</a>
+            <a href="categories.php" class="list-group-item list-group-item-action">Categorías</a>
             <a href="products.php" class="list-group-item list-group-item-action">Productos</a>
             <a href="add-product.php" class="list-group-item list-group-item-action">Agregar producto</a>
-            <a href="orders.php" class="list-group-item list-group-item-action">Pedidos</a>
+            <a href="orders.php" class="list-group-item list-group-item-action active">Pedidos</a>
           </div>
   </div>
   <div class="col-9 my-4">
 
           <?php
-          include ('Template/_categories.php');
+          include ('Template/_view-order.php');
           ?>
   </div>
 </div>

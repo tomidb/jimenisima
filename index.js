@@ -227,5 +227,9 @@ $(document).ready(function () {
 
   // responsive nav menu function
 
-  $(".navbar-collapse").collapse();
+  $(".navbar-collapse").collapse("hide");
+
+  $(".navbar-nav>li>a").on("click", function () {
+    $(".navbar-collapse").collapse("hide");
+  });
 });

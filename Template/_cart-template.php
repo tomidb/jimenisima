@@ -13,7 +13,14 @@
               $user_id = mysqli_real_escape_string($db->con, $user['user_id']);
               $user_name = mysqli_real_escape_string($db->con, $user['userName']);
               $user_email = mysqli_real_escape_string($db->con, $user['email']);
-              $total_price = mysqli_real_escape_string($db->con, $_POST['total_price']);
+
+              $userCartItems = $Cart->getUserCartItems($user_id);
+
+              $total_price = 0;
+              foreach ($userCartItems as $item) {
+                      $cartQty = $Cart->getCartItemQty($item['item_id'], $user_id);
+                      $total_price += $item['item_price'] * $cartQty;
+              }
               
               $insert_query = "INSERT INTO orders (user_id, user_name, user_email, total_price) VALUES ('$user_id', '$user_name', '$user_email', '$total_price')";
               $insert_query_run = mysqli_query($db->con, $insert_query);
@@ -23,6 +30,7 @@
                   $select_cart_items_query = "SELECT item_id, qty, item_name, item_image, item_price FROM cart WHERE user_id = '$user_id'";
                   $select_cart_items_query_run = mysqli_query($db->con, $select_cart_items_query);
 
+                  $text = "*Hola WowArt!* Ya tengo listo mi pedido: \n\n";
                   foreach ($select_cart_items_query_run as $product) {
                     $product_id = $product['item_id'];
                     $product_qty = $product['qty'];
@@ -39,13 +47,25 @@
                     $actual_stock_qty = (int) $row['qty'];
                     $new_qty = $actual_stock_qty - $product_qty;
 
+                    $text .= "*$product_name*\n" .
+                                  "- precio por unidad: $$product_price\n" .
+                                  "- cantidad: x $product_qty\n";
+
                     $update_stock_qty = "UPDATE product SET qty = '$new_qty' WHERE item_id = '$product_id'";
                     $update_stock_qty_run = mysqli_query($db->con, $update_stock_qty);
                   }
                   $delete_cart_query = "DELETE FROM cart WHERE user_id = '$user_id'";
                   $delete_cart_query_run = mysqli_query($db->con, $delete_cart_query);
 
-                  header("Location: index.php");
+                  $text .= 
+                              "Nr de orden: *$order_id* \n" .
+                              "Precio total: *$$total_price* \n" .
+                              "Cliente: *$user_name* \n" .
+                              "Email: *$user_email* \n\n" .
+                              "Aguardaré tu respuesta para confirmar el pedido.";
+
+                  $url = "https://api.whatsapp.com/send?phone=5493517594045&text=" . urlencode($text);
+                  header("Location: $url");
               }
         }
     }
@@ -74,13 +94,15 @@
                  // get user cart products
                     $user_id = $_SESSION['user_id'];
                     $userCartItems = $Cart->getUserCartItems($user_id);
+                    $subTotal = array();
                     foreach ($userCartItems as $item) :
                         $cart = $product->getProduct($item['item_id']);
                         $cartQty = $Cart->getCartItemQty($item['item_id'], $user_id);
-                        $subTotal[] = array_map(function ($item)  use ($cartQty ){
+                        $stockQty = $cart[0]['qty']; // Obtener la cantidad en stock del producto
+            
 
                 ?>
-                <!-- cart item -->
+                <!-- cart item -->  
                 <div class="row border-top py-3 mt-3">
                     <div class="col-sm-2">
                         <img src="<?php echo $item['item_image'] ?? "./assets/products/1.png" ?>" style="height: 120px;" alt="cart1" class="img-fluid">
@@ -94,7 +116,7 @@
                             <div class="stock text-warning font-size-12">
                                 <input type="number" 
                                 data-id="<?php echo $item['item_id'] ?? '0'; ?>" class="qty_stock"
-                                value="<?php echo $item['qty']; ?>" disabled>
+                                value="<?php echo $stockQty ?? '15'; ?>" disabled>
                             <span class="px-2 font-rale font-size-14"> unidades en Stock.</span>
                             </div>
 
@@ -127,10 +149,9 @@
                 </div>
                 <!-- !cart item -->
                 <?php
-                            $subTotal = $item['item_price'] * $cartQty;
-                            return $subTotal;
-                        }, $cart); // closing array_map function
+                        $subTotal[] = $item['item_price'] * $cartQty;
                     endforeach;
+                    $total_price = array_sum($subTotal);
                 ?>
             </div>
             <!-- subtotal section-->
@@ -138,12 +159,11 @@
                 <div class="sub-total border text-center mt-2">
                     <h6 class="font-size-12 font-rale text-success py-3"><i class="fas fa-check"></i> Clickea para enviar tu pedido al whatsapp de nuestros vendedores</h6>
                     <div class="border-top py-4">
-                        <h5 class="font-baloo font-size-20">Subtotal ( <?php echo isset($subTotal) ? count($subTotal) : 0; ?> item):&nbsp; <span class="text-danger">$<span class="text-danger" id="deal-price"><?php echo isset($subTotal) ? $Cart->getSum($subTotal) : 0; ?></span> </span> </h5>
+                        <h5 class="font-baloo font-size-20">Subtotal ( <?php echo isset($subTotal) ? count($subTotal) : 0; ?> item):&nbsp; <span class="text-danger">$<span class="text-danger" id="deal-price"><?php echo isset($total_price) ? $total_price : 0; ?></span> </span> </h5>
                         <form method="post">
-                            <input type="hidden" name="total_price" value="<?php echo $Cart->getSum($subTotal); ?>">
+                            <input type="hidden" name="total_price" value="<?php echo $total_price; ?>">
                             <button type="submit" name="confirm-order-submit" class="btn btn-warning mt-3">Continuar por Whatsapp</button>
                         </form>
-
                     </div>
                 </div>
             </div>

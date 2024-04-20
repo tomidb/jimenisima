@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                             </div>
                             <form method="post">
                                 <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?? '1'; ?>">
-                                <input type="hidden" name="user_id" value="<?php echo $user['user_id'] ?? '55'; ?>">
+                                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'] ?? '55'; ?>">
                                 <input type="hidden" name="item_name" value="<?php echo $item['item_name'] ?? '1'; ?>">
                                 <input type="hidden" name="item_image" value="<?php echo $item['item_image'] ?? '55'; ?>">
                                 <input type="hidden" name="item_price" value="<?php echo $item['item_price'] ?? '55'; ?>">

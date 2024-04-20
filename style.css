@@ -10,6 +10,10 @@ main {
   overflow: hidden;
 }
 
+.vh-100 {
+  min-height: 100vh !important;
+}
+
 button,
 button:focus {
   outline: none !important;
@@ -174,6 +178,13 @@ input[type="file"] {
   background-color: black;
 }
 
+.border-top {
+  border-top: 1px solid black;
+}
+
+.status-label {
+  font-weight: bold !important;
+}
 /*  Cart template  */
 
 .qty_stock {

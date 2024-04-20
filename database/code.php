@@ -125,5 +125,38 @@ if(isset($_POST['add_category_btn'])){
           $_SESSION['message'] = "Algo salió mal.";
           echo "<script>window.location.href='../edit-product.php?id=$product_id'</script>";
   }
+} else if (isset($_POST['update_status_btn'])){
+  $order_id = $_POST['order_id'];
+  $order_status = $_POST['order_status'];
+  if ($order_status == 0){
+     echo "<script>window.location.href='../orders.php'</script>";
+  } else if($order_status == 1) {
+    $delete_order_query = "DELETE FROM orders WHERE order_id = $order_id";
+    $delete_order_query_run = mysqli_query($db->con, $delete_order_query);
+    $_SESSION['message'] = "Lista de pedidos en curso actualizada.";
+    echo "<script>window.location.href='../orders.php'</script>";
+  } else if ($order_status == 2){
+    $order_products_query = "SELECT * FROM order_products WHERE order_id = $order_id";
+    $order_products_query_run = mysqli_query($db->con, $order_products_query);
+    foreach ($order_products_query_run as $product) {
+      $order_product_qty = $product['product_qty'];
+      $product_id = $product['product_id'];
+
+      $get_qty_query = "SELECT qty FROM product WHERE item_id = $product_id";
+      $stock_qty = mysqli_query($db->con, $get_qty_query);
+      $row = mysqli_fetch_assoc($stock_qty);
+      $actual_stock_qty = (int) $row['qty'];
+      
+      $new_stock_qty = $actual_stock_qty + $order_product_qty;
+
+      $update_stock_qty = "UPDATE product SET qty = '$new_stock_qty' WHERE item_id = '$product_id'";
+      $update_stock_qty_run = mysqli_query($db->con, $update_stock_qty);
+
+      $delete_order_query = "DELETE FROM orders WHERE order_id = $order_id";
+      $delete_order_query_run = mysqli_query($db->con, $delete_order_query);
+      $_SESSION['message'] = "Lista de pedidos en curso actualizada.";
+      echo "<script>window.location.href='../orders.php'</script>";
+    }
+  }
 }
 
