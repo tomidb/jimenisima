@@ -10,7 +10,7 @@ require('helper/helper.php');
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>WowArt</title>
+      <title>Ximenisima</title>
 
       <!-- Bootstrap CDN -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -45,33 +45,10 @@ require('helper/helper.php');
   <!-- start #header -->
 
   <header id="header">
-
-      <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
-          <p class="font-rale font-size-12 text-black-50 m-0">Hello! I'm Tomás de Breuil and i'm working here.
-            <?php
-              if(isset($_SESSION['user_id'])){
-                ?>
-                <strong>User name: </strong><span><?= $user['userName']; ?></span>
-                <strong> - User id: </strong><span><?= $user['user_id']; ?></span>
-                <strong> - User email: </strong><span><?= $user['email']; ?></span>
-                <strong> - User rol: </strong><span><?= $user['rol']; ?></span>
-              <?php
-                  } else {
-                    echo "NO HAY NADIE ON";
-                    
-                  }
-              ?>
-          </p>
-          <div class="font-rale font-size-14">
-              <a href="#" class="px-3 border-right border-left text-dark">Login</a>
-              <a href="#" class="px-3 border-right text-dark">Whishlist (0)</a>
-          </div>
-      </div>
-
       <!-- Primary Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.php"><img src="assets/wow.webp" class="wow-art" alt="Jimenisima"><span class="wow-art-span">Art</span></a>
+          <a class="navbar-brand" href="index.php"><span class="wow-art-span">Ximenisima</span></a>
                     <form action="#" class="font-size-14 font-rale d-lg-none ml-auto mr-3">
             <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
                 <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
@@ -92,14 +69,14 @@ require('helper/helper.php');
           <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav m-auto font-rubik">
 
-                  <li class="nav-item active">
-                      <a class="nav-link" href="#">Categorías <i class="fas fa-chevron-down"></i></a>
+                  <li class="nav-item">
+                      <a class="nav-link" href="index.php#new-phones">Nuevos productos</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.php#top-sale">Nuevos productos</a>
+                      <a class="nav-link" href="index.php#special-price">Categorías</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.php#blogs">Nuestra tienda en ferias</a>
+                      <a class="nav-link" href="index.php#blogs">La tienda en ferias</a>
                   </li>
                   <?php
                   if(isset($_SESSION['user_id']) && isset($user['email']) && $user['email'] == 'stickers@admin.com'){?>

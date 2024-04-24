@@ -30,7 +30,7 @@
                   $select_cart_items_query = "SELECT item_id, qty, item_name, item_image, item_price FROM cart WHERE user_id = '$user_id'";
                   $select_cart_items_query_run = mysqli_query($db->con, $select_cart_items_query);
 
-                  $text = "*Hola WowArt!* Ya tengo listo mi pedido: \n\n";
+                  $text = "*Hola Ximenisima!* Ya tengo listo mi pedido: \n\n";
                   foreach ($select_cart_items_query_run as $product) {
                     $product_id = $product['item_id'];
                     $product_qty = $product['qty'];
@@ -74,13 +74,9 @@
     <div class="container-fluid w-75">
                 <?php
                   if(isset($_GET['sin-stock']) || isset($_POST['confirm-order-submit'])){
-                        $user_id = $user['user_id'];
-                        $user_name = $user['userName'];
-                        $user_email = $user['email'];
-                        $total_price = $_POST['total_price'];
                     ?>
                       <div class="alert alert-warning" role="alert">
-                      <strong>Hey! <?= $user_id; ?>-<?= $user_name; ?>-<?= $user_email; ?>-<?= $total_price; ?></strong><p>Has alcanzado el límite de unidades en stock de ese producto.</p>
+                      <strong>Hey!</strong><p>Has alcanzado el límite de unidades en stock de ese producto.</p>
                       </div>
                     <?php 
                         unset($_SESSION['message']);
@@ -105,12 +101,10 @@
                 <!-- cart item -->  
                 <div class="row border-top py-3 mt-3">
                     <div class="col-sm-2">
-                        <img src="<?php echo $item['item_image'] ?? "./assets/products/1.png" ?>" style="height: 120px;" alt="cart1" class="img-fluid">
+                        <img src="./assets/products/<?php echo $item['item_image'] ?? "./assets/products/1.png" ?>" style="height: 120px;" alt="cart1" class="img-fluid">
                     </div>
                     <div class="col-sm-8">
                         <h5 class="font-baloo font-size-20"><?php echo $item['item_name'] ?? "Unknown"; ?></h5>
-                        <p><?php  ?></p>
-                        <small>by <?php echo $item['item_brand'] ?? "Brand"; ?></small>
                         <!-- product rating -->
                         <div class="d-flex">
                             <div class="stock text-warning font-size-12">
@@ -124,7 +118,7 @@
                         <!--  !product rating-->
 
                         <!-- product qty -->
-                        <div class="qty d-flex pt-2">
+                        <div class="qty d-flex pt-2 qty-buttons">
                             <div class="d-flex font-rale w-25">
                                 <button class="qty-up update-qty border bg-light" data-id="<?php echo $item['item_id'] ?? '0'; ?>"><i class="fas fa-angle-up"></i></button>
                                 <input type="number" 
@@ -135,7 +129,7 @@
 
                         <!-- !product qty -->
 
-                            <form method="post">
+                            <form method="post" id="del-form" class="del-cart-btn">
                                 <input type="hidden" value="<?php echo $item['item_id'] ?? 0; ?>" name="item_id">
                                 <button type="submit" name="delete-cart-submit" class="btn font-baloo text-danger px-3 border-right">Delete</button>
                             </form>

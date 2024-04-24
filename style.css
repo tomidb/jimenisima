@@ -132,11 +132,55 @@ button:focus {
   margin-right: 1.2rem;
   margin-top: 1rem;
 }
+#special-price .container h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+#filters {
+  justify-content: start !important;
+  text-align: left !important;
+}
 
+#new-phones .container h4 {
+  margin-top: 2rem;
+}
+
+#blogs .container h4 {
+  margin-top: 2rem;
+}
+
+@media (max-width: 767px) {
+  #special-price .grid .grid-item {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-right: auto; /* Elimina el margen derecho */
+    margin-left: auto; /* Agrega un margen izquierdo automático para centrar */
+    width: 90%; /* Ajusta el ancho de las tarjetas para que ocupen el espacio disponible */
+  }
+
+  #special-price .grid .grid-item .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente el contenido dentro de la tarjeta */
+    align-items: center; /* Centra horizontalmente el contenido dentro de la tarjeta */
+    height: 100%; /* Establece una altura completa para asegurar el centrado vertical */
+    padding: 0 10px; /* Añade un relleno a los lados del contenido para separarlo del borde de la tarjeta */
+  }
+
+  #special-price .grid .grid-item .product {
+    justify-content: center;
+    text-align: center;
+    margin-right: auto; /* Elimina el margen derecho */
+    margin-left: auto; /* Agrega un margen izquierdo automático para centrar */
+  }
+}
 /* Register & Login Templates */
 
 #register,
 #login {
+  min-height: 90vh;
   padding: 5% 0;
 }
 
@@ -186,11 +230,48 @@ input[type="file"] {
   font-weight: bold !important;
 }
 /*  Cart template  */
+.quantity-buttons {
+  min-width: 50px;
+}
+
+.qty_input {
+  min-width: 30px;
+  text-align: center;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.update-qty {
+  min-width: 30px;
+}
 
 .qty_stock {
   margin: 0px;
   padding: 0px;
   text-align: center;
-  justify-content: center !important;
-  width: 50px !important;
+  justify-content: center;
+  width: 50px;
+}
+
+@media (max-width: 767px) {
+  .del-cart-btn {
+    margin-left: 25px;
+  }
+}
+/* Footer */
+
+.portfolio-link {
+  color: white;
+}
+.portfolio-link:visited {
+  color: white;
+}
+
+/* Banner */
+#banner-area {
+  max-height: 84vh;
+}
+.banner-img {
+  max-height: 84vh;
 }

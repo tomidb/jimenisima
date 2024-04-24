@@ -20,7 +20,7 @@ while ($item = mysqli_fetch_assoc($result)) {
 }
 
 function getByID($db, $table, $id){
-  $query = "SELECT * FROM $table WHERE id='$id'";
+  $query = "SELECT * FROM $table WHERE item_id='$id'";
   return $query_run = mysqli_query($db->con, $query);
   /*
     $result = $db->con->query("SELECT * FROM {$table} WHERE id='$id'");

@@ -62,7 +62,7 @@ if(isset($_POST['add_category_btn'])){
   $filename = time().'.'.$image_ext;
 
   if($name != "" && $category != "" && $price != ""){
-        $product_query = "INSERT INTO products ( category, name, price, image, qty ) VALUES ('$category','$name','$price','$filename','$qty')";
+        $product_query = "INSERT INTO products ( category, item_name, item_price, item_image, qty ) VALUES ('$category','$name','$price','$filename','$qty')";
 
         $product_query_run = mysqli_query($db->con, $product_query);
 
@@ -106,7 +106,7 @@ if(isset($_POST['add_category_btn'])){
     $update_filename = $old_image;
   }
  
-  $update_product_query = "UPDATE products SET category='$category',name='$name',price='$price', qty='$qty', image='$update_filename' WHERE id='$product_id' ";
+  $update_product_query = "UPDATE products SET category='$category',item_name='$name',item_price='$price', qty='$qty', item_image='$update_filename' WHERE item_id='$product_id' ";
   $update_product_query_run = mysqli_query($db->con, $update_product_query);
 
   if($update_product_query_run){

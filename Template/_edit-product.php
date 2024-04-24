@@ -50,21 +50,21 @@ $db = new DBController();
                                   ?>
                                 </select>
                             </div>
-                            <input type="hidden" name="product_id" value="<?= $data['id']; ?>">
+                            <input type="hidden" name="product_id" value="<?= $data['item_id']; ?>">
                             <div class="col-md-12">
                                 <label class="my-2">Nombre</label>
-                                <input type="text" required class="form-control" name="name" value="<?= $data['name']; ?>" placeholder="Ingrese el nombre del producto">
+                                <input type="text" required class="form-control" name="name" value="<?= $data['item_name']; ?>" placeholder="Ingrese el nombre del producto">
                             </div>
                             <div class="col-md-6">
                                 <label class="my-2">Precio</label>
-                                <input type="text" required class="form-control" name="price" value="<?= $data['price']; ?>" placeholder="Ingrese el precio del producto">
+                                <input type="text" required class="form-control" name="price" value="<?= $data['item_price']; ?>" placeholder="Ingrese el precio del producto">
                             </div>
                             <div class="col-md-12">
                                 <label class="my-2">Actualizar imágen</label>
-                                <input type="hidden" name="old_image" value="<?= $data['image']; ?>">
+                                <input type="hidden" name="old_image" value="<?= $data['item_image']; ?>">
                                 <input type="file" class="form-control form-file" name="image">
                                 <label class="my-2">Imágen actual</label>
-                                <img src="assets/products/<?= $data['image']; ?>" alt="<?= $data['name']; ?>" height="50px" width="50px" class="mt-2">
+                                <img src="assets/products/<?= $data['item_image']; ?>" alt="<?= $data['item_name']; ?>" height="50px" width="50px" class="mt-2">
                             </div>
                             <div class="col-md-6">
                                 <label class="my-2">Cantidad</label>

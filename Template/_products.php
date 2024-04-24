@@ -37,7 +37,7 @@ $db = new DBController();
                   </thead>
                   <tbody>
                     <?php
-                        $products = getAll($db, 'products');
+                        $products = getAll($db, 'product');
                         
                           if(mysqli_num_rows($products) > 0)
                           {
@@ -45,20 +45,20 @@ $db = new DBController();
                              {
                               ?>
                               <tr>
-                                <td><?= $product['id']; ?></td>
+                                <td><?= $product['item_id']; ?></td>
                                 <td><?= $product['category']; ?></td>
-                                <td><?= $product['name']; ?></td>
-                                <td><?= $product['price']; ?></td>
+                                <td><?= $product['item_name']; ?></td>
+                                <td><?= $product['item_price']; ?></td>
                                 <td>
-                                  <img src="assets/products/<?= $product['image']; ?>" alt="<?= $product['name']; ?>" width="50px" height="50px">
+                                  <img src="assets/products/<?= $product['item_image']; ?>" alt="<?= $product['item_name']; ?>" width="50px" height="50px">
                                 </td>
                                 <td><?= $product['qty']; ?></td>
                                 <td>
-                                  <a href="edit-product.php?id=<?= $product['id']; ?>" class="btn btn-primary btn-sm">Editar</a>
+                                  <a href="edit-product.php?id=<?= $product['item_id']; ?>" class="btn btn-primary btn-sm">Editar</a>
                                 </td>
                                 <td>
                                   <form action="database/code.php" method="POST">
-                                    <input type="hidden" name="id" value="<?= $product['id']; ?>">
+                                    <input type="hidden" name="id" value="<?= $product['item_id']; ?>">
                                     <button type="submit" class="btn btn-primary btn-sm" name="del_product_btn">Eliminar</button>
                                   </form>
                                 </td>

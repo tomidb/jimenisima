@@ -76,7 +76,7 @@ if(isset($_GET['nr'])){
                                 <td><?= $product['product_id']; ?></td>
                                 <td><?= $product['product_name']; ?></td>
                                 <td>
-                                  <img src="<?= $product['product_image']; ?>" alt="<?= $product['product_name']; ?>" width="50px" height="50px">
+                                  <img src="./assets/products/<?= $product['product_image']; ?>" alt="<?= $product['product_name']; ?>" width="50px" height="50px">
                                 </td>
                                 <td>$ <?= $product['product_price']; ?></td>
                                 <td><?= $product['product_qty']; ?></td>
