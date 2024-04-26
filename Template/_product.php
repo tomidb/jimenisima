@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                                 <input type="hidden" name="item_image" value="<?php echo $item['item_image'] ?? '55'; ?>">
                                 <input type="hidden" name="item_price" value="<?php echo $item['item_price'] ?? '55'; ?>">
                         <?php
-                        if (in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){
+                            if (in_array($item['item_id'], $in_cart ?? [])){
                             echo '<button type="submit" disabled class="btn btn-success font-size-16 form-control">In the Cart</button>';
                         }else{
                             echo '<button type="submit" name="product_submit" class="btn btn-warning font-size-16 form-control">Add to Cart</button>';

@@ -75,12 +75,20 @@ button:focus {
 }
 
 /*  navbar template   */
-
-.wow-art {
-  width: 50px !important;
-  max-width: 50px !important;
+.navbar {
+  background-color: #ffc107;
+}
+.nav-item,
+.nav-link {
+  color: #003859 !important;
+}
+.cart-nav-btn {
+  background-color: #003859;
+}
+.logo-nav {
+  width: 150px !important;
+  max-width: 150px !important;
   height: auto;
-  transform: rotate(345deg);
 }
 
 .wow-art-span {

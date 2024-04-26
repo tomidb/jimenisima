@@ -12,7 +12,7 @@
   ?>
     <div class="owl-carousel owl-theme">
         <div class="item">
-            <img src="./assets/banner-1.jpg" alt="Banner1" class="banner-img">
+            <img src="./assets/banner-1.png" alt="Banner1" class="banner-img">
         </div>
         <div class="item">
             <img src="./assets/banner-2.jpg" alt="Banner2" class="banner-img">

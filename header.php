@@ -46,11 +46,11 @@ require('helper/helper.php');
 
   <header id="header">
       <!-- Primary Navigation -->
-      <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
+      <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.php"><span class="wow-art-span">Ximenisima</span></a>
+          <a class="navbar-brand" href="index.php"><img src="assets/logo.png" alt="Ximenisima" class="logo-nav"></a>
                     <form action="#" class="font-size-14 font-rale d-lg-none ml-auto mr-3">
-            <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
+            <a href="cart.php" class="py-2 rounded-pill cart-nav-btn">
                 <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
                 <span class="px-3 py-2 rounded-pill text-dark bg-light">
                     <?php 
@@ -73,7 +73,7 @@ require('helper/helper.php');
                       <a class="nav-link" href="index.php#new-phones">Nuevos productos</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="index.php#special-price">Categorías</a>
+                      <a class="nav-link" href="index.php#special-price">Catálogo</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="index.php#blogs">La tienda en ferias</a>
@@ -102,7 +102,7 @@ require('helper/helper.php');
               </ul>
           </div>
         <form action="#" class="font-size-14 font-rale d-none d-lg-block">
-            <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
+            <a href="cart.php" class="py-2 rounded-pill cart-nav-btn">
                 <span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>
                 <span class="px-3 py-2 rounded-pill text-dark bg-light">
                     <?php 
